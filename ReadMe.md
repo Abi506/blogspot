@@ -1,7 +1,7 @@
 # Simple CRUD Application (BlogSpot)
 
 ## Overview
-BlogSpot a blog Writing application.This is a CRUD application built using the MERN stack (MongoDB, Express.js, React, Node.js). The application includes user authentication, API integration, real-time features with Socket.IO, and form handling with validation.
+BlogSpot a blog Writing application.This is a CRUD application built using the MERN stack (MongoDB, Express.js, React, Node.js). The application includes user authentication, API integration and form handling with validation.
 
 ## Features
 - **CRUD Operations**: Create, Read, Update, and Delete operations for managing the blogs.
