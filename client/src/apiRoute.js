@@ -1,0 +1,9 @@
+export const host='http://localhost:3000'
+export const login_api=`${host}/login`
+export const register_api=`${host}/register`
+export const blog_post_api=`${host}/temp`
+export const my_blog_api=`${host}/temp/my-blog`
+export const contact_api=`${host}/contact`
+export const profile_api=`${host}/profile`
+export const update_profile_api=`${host}/profile/about-me`
+export const update_profile_pic_api=`${host}/profile/profile-pic`

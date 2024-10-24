@@ -1,0 +1,47 @@
+.upload-blog-container{
+    height: 100vh;   
+    text-align: left;
+    padding:40px;
+}
+.blog-heading{
+    color:orange;
+    font-size: 18px;
+}
+.upload-form{
+    padding:30px;
+        background: rgba(126, 124, 124, 0.1); /* Black with 50% transparency */
+        padding: 20px; /* Add padding for spacing */
+        border-radius: 8px; /* Optional: add rounded corners */
+        color: black; /* Change text color to white for better contrast */
+    min-height: 100vh;
+}
+.title-input{
+    padding: 6px;
+    width:30%;
+    border-radius: 4px;
+}
+.input-image{
+    margin:10px;
+    width:100%;
+}
+.textarea-input{
+    margin-top: 10px;
+    width: 80%;
+}
+
+@media all and (max-width:550px){
+    .title-input{
+        width:70%;
+    }
+    .writeImg{
+        width:120px;
+        height: 100px;
+
+    }
+}
+.addContentOptions{
+    margin-top: 30px;
+}
+.add-buttons{
+    margin:20px;
+}

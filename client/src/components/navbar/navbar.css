@@ -1,0 +1,14 @@
+.nav-custom-container{
+    background-color: aliceblue; 
+}
+.nav-logo-text{
+    color: orange !important;  /* Overwrites the default Bootstrap style */
+  font-family: sans-serif;
+}
+.navbar-profile-image{
+  width: 30px;
+  border-radius: 100px;
+  height: 30px;
+  cursor: pointer;
+  border:1px solid black;
+}

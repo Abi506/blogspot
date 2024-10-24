@@ -1,0 +1,33 @@
+.profile-details{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.user-profile{
+    width:50px;
+    height: 50px;
+    border-radius: 100px;
+    margin-right: 10px;
+}
+.profile-details-header{
+    display: flex;
+    flex-direction: column;
+}
+.about-me-profike{
+    width: 150px;
+    height: 150px;
+    border-radius: 120px;
+}
+.about-me-para{
+    max-width:100%;
+    text-align: left;
+}
+.about-me-section{
+    padding:10px;
+    border: 6px;
+    width: 500px;
+}
+.about-me-heading{
+    text-align: left;
+    font-size: 18px;
+}
