@@ -1,4 +1,4 @@
-export const host='http://localhost:3000'
+export const host='https://blogspot-tnwy.onrender.com'
 export const login_api=`${host}/login`
 export const register_api=`${host}/register`
 export const blog_post_api=`${host}/temp`

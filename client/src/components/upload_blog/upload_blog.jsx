@@ -40,9 +40,9 @@ const UploadBlog = () => {
         const formData = new FormData();
         const token=Cookie.get("auth_token")
         
-        // Fixed spelling mistake from 'titile' to 'title'
+        
         formData.append('title', title);
-        // Stringify content array before sending
+        
         formData.append('content', JSON.stringify(content));
         formData.append('file', file);
         const titleValue = formData.get('title');
@@ -51,15 +51,15 @@ const UploadBlog = () => {
     console.log(fileValue,'file value........')
     if (!titleValue) {
         alert("Enter the title before publishing");
-        return; // Stop further execution
+        return; 
     }
-    if (!fileValue) {  // Updated check for file existence
+    if (!fileValue) {  
         alert("Upload the blog image before publishing");
-        return; // Stop further execution
+        return; 
     }
     if (!contentValue || contentValue === "[]") {
         alert("Write the content of your blog before uploading");
-        return; // Stop further execution
+        return; 
     }
         
         try {

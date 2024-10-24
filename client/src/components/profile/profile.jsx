@@ -1,22 +1,22 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Cookie from 'js-cookie';
-import { profile_api, update_profile_api, update_profile_pic_api, host } from '../../apiRoute'; // Include API routes
+import { profile_api, update_profile_api, update_profile_pic_api, host } from '../../apiRoute';
 import profile_pic from '../../assets/profile_pic.png';
 import { Container } from 'react-bootstrap';
 import './profile.css';
 
 const Profile = () => {
-    const [userDetails, setUserDetails] = useState(null); // State to store user details
-    const [error, setError] = useState(null); // State to store any errors
-    const [isEditing, setIsEditing] = useState(false); // State to toggle edit mode
-    const [aboutMeText, setAboutMeText] = useState(''); // State to store about me input text
-    const [profileImage, setProfileImage] = useState(null); // State to store the new profile image
+    const [userDetails, setUserDetails] = useState(null); 
+    const [error, setError] = useState(null);
+    const [isEditing, setIsEditing] = useState(false); 
+    const [aboutMeText, setAboutMeText] = useState(''); 
+    const [profileImage, setProfileImage] = useState(null); 
 
-    // Fetch user data on component mount
+
     useEffect(() => {
         const fetchUserData = async () => {
-            const authToken = Cookie.get('auth_token'); // Retrieve auth_token from cookies
+            const authToken = Cookie.get('auth_token'); 
 
             if (!authToken) {
                 setError('No authentication token found.');
@@ -26,26 +26,26 @@ const Profile = () => {
             try {
                 const response = await axios.get(profile_api, {
                     headers: {
-                        Authorization: `Bearer ${authToken}`, // Include auth token in headers
+                        Authorization: `Bearer ${authToken}`, 
                     },
                 });
                 console.log(response.data, 'response from backend');
-                setUserDetails(response.data[0]); // Set user details in state
-                setAboutMeText(response.data[0].aboutMe || ''); // Initialize aboutMeText
+                setUserDetails(response.data[0]); 
+                setAboutMeText(response.data[0].aboutMe || ''); 
             } catch (err) {
-                setError(err.response ? err.response.data.msg : 'Error fetching user data'); // Handle errors
+                setError(err.response ? err.response.data.msg : 'Error fetching user data'); 
             }
         };
 
-        fetchUserData(); // Call the function to fetch user data
+        fetchUserData(); 
     }, []);
 
-    // Handler for entering edit mode
+
     const handleEditClick = () => {
-        setIsEditing(true); // Enable editing mode
+        setIsEditing(true); 
     };
 
-    // Handler for saving the updated "About Me" text
+
     const handleSaveClick = async () => {
         const authToken = Cookie.get('auth_token');
 
@@ -56,34 +56,34 @@ const Profile = () => {
 
         try {
             const response = await axios.put(
-                update_profile_api, // API route for updating profile
+                update_profile_api,
                 { aboutMe: aboutMeText },
                 {
                     headers: {
-                        Authorization: `Bearer ${authToken}`, // Include auth token in headers
+                        Authorization: `Bearer ${authToken}`, 
                     },
                 }
             );
             console.log(response.data, 'response from updating profile');
-            setUserDetails({ ...userDetails, aboutMe: aboutMeText }); // Update the aboutMe in the userDetails
-            setIsEditing(false); // Exit editing mode
+            setUserDetails({ ...userDetails, aboutMe: aboutMeText }); 
+            setIsEditing(false); 
         } catch (err) {
             setError(err.response ? err.response.data.msg : 'Error updating user data');
         }
     };
 
-    // Handler for canceling the edit
+    
     const handleCancelClick = () => {
-        setIsEditing(false); // Exit editing mode
-        setAboutMeText(userDetails.aboutMe || ''); // Reset aboutMeText to original value
+        setIsEditing(false); 
+        setAboutMeText(userDetails.aboutMe || ''); 
     };
 
-    // Handler for selecting profile image
+   
     const handleProfileImageChange = (e) => {
-        setProfileImage(e.target.files[0]); // Set the selected image file
+        setProfileImage(e.target.files[0]); 
     };
 
-    // Handler for uploading the profile image
+ 
     const handleProfileImageUpload = async () => {
         const authToken = Cookie.get('auth_token');
 
@@ -93,30 +93,30 @@ const Profile = () => {
         }
 
         const formData = new FormData();
-        formData.append('profilePic', profileImage); // Append the selected image to form data
+        formData.append('profilePic', profileImage); 
 
         try {
             const response = await axios.put(update_profile_pic_api, formData, {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
-                    'Content-Type': 'multipart/form-data', // Ensure the content type is multipart
+                    'Content-Type': 'multipart/form-data', 
                 },
             });
 
-            setUserDetails({ ...userDetails, profilePic: response.data.user.profilePic }); // Update the profile image in user details
+            setUserDetails({ ...userDetails, profilePic: response.data.user.profilePic }); 
             alert('Profile image updated successfully');
         } catch (err) {
             setError(err.response ? err.response.data.msg : 'Error updating profile image');
         }
     };
 
-    // Render loading state, error, or user details
+
     if (error) {
         return <div className="error">{error}</div>;
     }
 
     if (!userDetails) {
-        return <div>Loading...</div>; // Show loading state while fetching data
+        return <div>Loading...</div>; 
     }
 
     return (
@@ -130,7 +130,7 @@ const Profile = () => {
                         <img src={profile_pic} alt="Profile" className="user-profile" />
                     )}
                     <h2>{userDetails.username.toUpperCase()}</h2>
-                    {/* Profile image upload */}
+                
                     </div>
                     <div className='d-flex flex-column'>
                     <div className="upload-profile-pic">

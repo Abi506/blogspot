@@ -13,7 +13,7 @@ const Temp = () => {
     const formData = new FormData();
     formData.append('title', title);
     formData.append('content', content);
-    formData.append('username', 'abinandhan'); // Hardcoded username, you can modify this
+    formData.append('username', 'abinandhan'); 
     formData.append('file', file);
 
     try {
@@ -22,14 +22,14 @@ const Temp = () => {
           'Content-Type': 'multipart/form-data',
         },
       });
-      setMessage(response.data.msg); // Set success message
-      // Reset form fields
+      setMessage(response.data.msg); 
+    
       setTitle('');
       setContent('');
       setFile(null);
     } catch (error) {
       console.error("Error uploading post:", error);
-      setMessage("Error uploading post"); // Set error message
+      setMessage("Error uploading post"); 
     }
   };
 
@@ -56,7 +56,7 @@ const Temp = () => {
         />
         <button type="submit">Create Post</button>
       </form>
-      {message && <p>{message}</p>} {/* Display message after submission */}
+      {message && <p>{message}</p>} 
     </div>
   );
 };

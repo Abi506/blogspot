@@ -8,19 +8,17 @@ import Cookie from 'js-cookie';
 import './home.css';
 
 const Home = () => {
-  const [blogs, setBlogs] = useState([]); // Initialize blogs as an array
-  const [searchTerm, setSearchTerm] = useState(''); // State for search term
-  const [loading, setLoading] = useState(false); // To handle loading state
-  const [noResults, setNoResults] = useState(false); // To handle no results state
-  const [sortType, setSortType] = useState(''); // State to store the selected sort type
-
+  const [blogs, setBlogs] = useState([]); 
+  const [searchTerm, setSearchTerm] = useState(''); 
+  const [loading, setLoading] = useState(false); 
+  const [noResults, setNoResults] = useState(false); 
   const userSearch = useRef();
 
   useEffect(() => {
     const token = Cookie.get('auth_token');
     
     const fetchBlogs = async () => {
-      setLoading(true); // Start loading
+      setLoading(true); 
       try {
         const response = await axios.get(blog_post_api, {
           headers: {
@@ -28,39 +26,38 @@ const Home = () => {
           },
         });
         setBlogs(response.data);
-        setNoResults(response.data.length === 0); // Check if there are no blogs
+        setNoResults(response.data.length === 0); 
       } catch (error) {
-        console.log(error, 'error');
+        console.error("Error fetching blogs:", error);
       } finally {
-        setLoading(false); // End loading
+        setLoading(false); 
       }
     };
 
-    fetchBlogs(); // Fetch blogs initially when the component mounts
+    fetchBlogs(); 
   }, []);
 
   const handleSearch = async () => {
     const token = Cookie.get('auth_token');
-    const searchValue = userSearch.current.value; // Get the search input value
+    const searchValue = userSearch.current.value; 
 
-    setLoading(true); // Start loading
+    setLoading(true); 
     try {
       const response = await axios.get(`${blog_post_api}?search=${searchValue}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      setBlogs(response.data); // Update blogs with the search results
-      setNoResults(response.data.length === 0); // Set no results if no blogs found
+      setBlogs(response.data);
+      setNoResults(response.data.length === 0); 
     } catch (error) {
-      console.log(error, 'error during search');
+      console.error("Error during search:", error);
     } finally {
-      setLoading(false); // End loading
+      setLoading(false); 
     }
   };
 
   const handleSort = (sortOption) => {
-    setSortType(sortOption);
     let sortedBlogs = [...blogs];
 
     switch (sortOption) {
@@ -77,7 +74,7 @@ const Home = () => {
         break;
     }
     
-    setBlogs(sortedBlogs); // Update the sorted blogs
+    setBlogs(sortedBlogs); 
   };
 
   return (
@@ -97,7 +94,6 @@ const Home = () => {
           <IoSearch className='search-icon' />
         </button>
 
-        {/* Sort Options Dropdown */}
         <select onChange={(e) => handleSort(e.target.value)} className="sort-input">
           <option value="">Sort By</option>
           <option value="title">Title</option>
@@ -107,9 +103,9 @@ const Home = () => {
       </div>
 
       {loading ? (
-        <p>Loading blogs...</p> // Loading message
+        <p>Loading blogs...</p>
       ) : noResults ? (
-        <p className='user-search-not-found'>No blogs found for "{userSearch.current.value}"</p> // No blogs found message
+        <p className='user-search-not-found'>No blogs found for "{userSearch.current.value}"</p>
       ) : (
         <ul className='list-of-blogs'>
           {blogs.map((each) => (

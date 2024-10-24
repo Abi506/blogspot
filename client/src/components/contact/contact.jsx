@@ -6,17 +6,14 @@ import './contact.css';
 import { contact_api } from '../../apiRoute';
 
 const Contact = () => {
-  // State to handle form data
   const [userData, setUserData] = useState({
     username: '',
     email: '',
     message: '',
   });
 
-  // State for success or error messages
   const [responseMessage, setResponseMessage] = useState('');
 
-  // Handle input change
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setUserData({
@@ -25,7 +22,6 @@ const Contact = () => {
     });
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -39,16 +35,15 @@ const Contact = () => {
         },
         {
           headers: {
-            Authorization: `Bearer ${token}`, // Replace with actual token
+            Authorization: `Bearer ${token}`, 
             'Content-Type': 'application/json',
           },
         }
       );
       console.log(response,'response')
-      // Handle successful response
       if (response.status === 200) {
         setResponseMessage('Message sent successfully!');
-        // Optionally reset form fields
+      
         setUserData({
           username: '',
           email: '',

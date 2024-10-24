@@ -17,11 +17,11 @@ const Blog = () => {
                 const id = params.id;
                 const response = await axios.get(`${blog_post_api}/blog/${id}`,{
                     headers: {
-                        Authorization: `Bearer ${token}` // Replace `yourAuthToken` with the actual token
+                        Authorization: `Bearer ${token}` 
                     }
                 });
                 console.log(response, 'response from backend');
-                setBlogData(response.data.post[0]); // Assuming the blog data is in post[0]
+                setBlogData(response.data.post[0]); 
             } catch (error) {
                 console.log(error, error.message);
             }
@@ -31,19 +31,19 @@ const Blog = () => {
 
     console.log(blogData);
 
-    // Function to convert date to IST format
+    
     const convertToIST = (dateString) => {
         const date = new Date(dateString);
-        // Adjusting to IST and returning only the date part
+      
         return date.toLocaleDateString('en-IN', { timeZone: 'Asia/Kolkata' });
     };
 
-    // Function to calculate how long ago the post was created
+   
     const getTimeAgo = (dateString) => {
         const postDate = new Date(dateString);
         const now = new Date();
-        const diffInMs = now - postDate; // Time difference in milliseconds
-        const diffInMinutes = Math.floor(diffInMs / (1000 * 60)); // Convert to minutes
+        const diffInMs = now - postDate; 
+        const diffInMinutes = Math.floor(diffInMs / (1000 * 60)); 
         const diffInHours = Math.floor(diffInMinutes / 60);
         const diffInDays = Math.floor(diffInHours / 24);
 
@@ -56,7 +56,7 @@ const Blog = () => {
         }
     };
 
-    // Function to render the content dynamically based on type
+   
     const renderContent = () => {
         if (blogData.content) {
             return JSON.parse(blogData.content).map((item, index) => {
@@ -82,7 +82,6 @@ const Blog = () => {
                 <img src={`${host}${blogData.photo}`} alt={blogData.title} className='blog-photo' />
             )}
             <p className='blog-author'>By {blogData.username} - {convertToIST(blogData.createdAt)} ({getTimeAgo(blogData.createdAt)})</p>
-            {/* Display the date in IST */}
             
             <h1 className='blog-title-2'>{blogData.title}</h1>
             <div className='blog-content'>

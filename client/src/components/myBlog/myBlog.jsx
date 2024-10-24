@@ -7,13 +7,12 @@ import axios from 'axios';
 import './myBlog.css';
 
 const MyBlog = () => {
-    const [blogs, setBlogs] = useState([]); // Initialize blogs as an array
+    const [blogs, setBlogs] = useState([]); 
 
     useEffect(() => {
         const fetchBlogs = async () => {
             const token = Cookie.get('auth_token');
-            console.log(token, 'token in MyBlog'); // Check the token here
-
+            console.log(token, 'token in MyBlog'); 
             try {
                 const response = await axios.get(my_blog_api, {
                     headers: {
@@ -28,14 +27,14 @@ const MyBlog = () => {
             }
         };
 
-        fetchBlogs(); // Call the async function
+        fetchBlogs(); 
     }, []);
 
     return (
         <Container>
             <h1>My Blog</h1>
 
-            {blogs.length > 0 ? ( // Check if there are any blogs
+            {blogs.length > 0 ? (
                 <ul className='list-of-blogs'>
                     {blogs.map((each) => (
                         <Link to={`/blog/${each._id}`} key={each._id} className='link-styles'>
@@ -48,7 +47,7 @@ const MyBlog = () => {
                     ))}
                 </ul>
             ) : (
-                <p>You haven't uploaded any blogs.</p> // Message when no blogs are available
+                <p>You haven't uploaded any blogs.</p> 
             )}
         </Container>
     );

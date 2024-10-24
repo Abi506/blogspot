@@ -2,7 +2,7 @@
     background-color: aliceblue; 
 }
 .nav-logo-text{
-    color: orange !important;  /* Overwrites the default Bootstrap style */
+    color: orange !important;  
   font-family: sans-serif;
 }
 .navbar-profile-image{

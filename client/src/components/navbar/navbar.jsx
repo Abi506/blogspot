@@ -12,37 +12,36 @@ import './navbar.css';
 
 function NavbarHeader() {
     const token = Cookie.get("auth_token");
-    const [profileData, setProfileData] = useState(null); // Store profile data here
+    const [profileData, setProfileData] = useState(null); 
     const navigate = useNavigate(); 
 
     useEffect(() => {
         if (token) {
             const fetchUserData = async () => {
-                const authToken = Cookie.get('auth_token'); // Retrieve auth_token from cookies
-    
                 try {
                     const response = await axios.get(profile_api, {
                         headers: {
-                            Authorization: `Bearer ${authToken}`, // Include auth token in headers
+                            Authorization: `Bearer ${token}`, 
                         },
                     });
-                    console.log(response.data[0], 'response from backend');
-                    if(response.data[0].profilePic!==""){
+                    console.log(response,'response from backedn 12212')
+                    if (response.data[0]?.profilePic) {
                         setProfileData(response.data[0]);
+                    } else {
+                        setProfileData({ profilePic: "" }); 
                     }
-                     // Update profile data
                 } catch (err) {
-                    console.log(err);
+                    console.error("Error fetching profile data:", err);
                 }
             };
-    
-            fetchUserData(); // Call the function to fetch user data
+
+            fetchUserData(); 
         }
     }, [token]);
 
     const handleLogout = () => {
         Cookie.remove("auth_token");
-        navigate('/login'); // Redirect to login after logout
+        navigate('/login'); 
     };
 
     return (
@@ -66,7 +65,7 @@ function NavbarHeader() {
                             <>
                                 <Nav.Link href='/profile'>
                                     <img 
-                                        src={profileData ? `${host}${profileData.profilePic}` :  profile_pic} 
+                                        src={profileData?.profilePic ? `${host}${profileData.profilePic}` : profile_pic} 
                                         className='navbar-profile-image' 
                                         alt="Profile" 
                                     />

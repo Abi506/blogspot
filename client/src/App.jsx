@@ -19,7 +19,6 @@ const App = () => {
     <>
       <NavbarHeader />
       <Routes>
-        {/* Public Routes */}
         <Route
           exact
           path='/login'
@@ -40,7 +39,7 @@ const App = () => {
         />
         <Route exact path='/temp' element={<Temp />} />
         
-        {/* Protected Routes */}
+        
         <Route
           exact
           path='/'
@@ -81,7 +80,7 @@ const App = () => {
         <Route exact path='/contact' element={<ProtectedRoute><Contact/></ProtectedRoute>}/>
         <Route exact path='/profile' element={<ProtectedRoute><Profile/></ProtectedRoute>}/>
         
-        {/* Not Found Route */}
+        
         <Route path="*" element={<NotFound/>} />
       </Routes>
     </>

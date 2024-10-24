@@ -2,13 +2,13 @@
     background-image: url(../../assets/register_image.jpg);
 }
 .register-container {
-    background-color: rgba(0, 0, 0, 0.5); /* Black background with 50% opacity */
-    color: white; /* Text color */
-    padding: 20px; /* Add some padding */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
-    max-width: 400px; /* Optional: Set a maximum width */
-    margin: auto; /* Center the container */
+    background-color: rgba(0, 0, 0, 0.5); 
+    color: white; 
+    padding: 20px; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    max-width: 400px; 
+    margin: auto; 
 }
 .register-text{
     color: white;

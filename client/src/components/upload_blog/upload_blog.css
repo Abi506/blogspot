@@ -9,10 +9,10 @@
 }
 .upload-form{
     padding:30px;
-        background: rgba(126, 124, 124, 0.1); /* Black with 50% transparency */
-        padding: 20px; /* Add padding for spacing */
-        border-radius: 8px; /* Optional: add rounded corners */
-        color: black; /* Change text color to white for better contrast */
+        background: rgba(126, 124, 124, 0.1);
+        padding: 20px;
+        border-radius: 8px;
+        color: black; 
     min-height: 100vh;
 }
 .title-input{

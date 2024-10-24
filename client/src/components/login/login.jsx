@@ -13,20 +13,20 @@ const Login = () => {
   const [error_msg,setErorMessage]=useState("")
   const navigate=useNavigate()
 
-  // Handle input change
+  
   const handleInput = (e) => {
     const { name, value } = e.target;
     setUserData((prevState) => ({
       ...prevState,
-      [name]: value, // Update specific field (username or password)
+      [name]: value, 
     }));
   };
 
-  // Handle login action
+  
   const handleLogin = async () => {
     if(userData.password && userData.username){
     try {
-      // Make an axios POST request to login
+   
       console.log(login_api)
       const response = await axios.post(login_api, userData);
       if(response.data.msg==="Login successful"){

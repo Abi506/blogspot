@@ -14,16 +14,15 @@ const Register = () => {
 
   const navigate=useNavigate()
 
-  // Handle input change
   const handleInput = (e) => {
     const { name, value } = e.target;
     setUserData((prevState) => ({
       ...prevState,
-      [name]: value, // Update specific field (username or password)
+      [name]: value, 
     }));
   };
 
-  // Handle login action
+ 
   const handleLogin = async () => {
     if(userData.email && userData.username && userData.password){
     try {
